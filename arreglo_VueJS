@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS</title>
+
+    <!--enlazar vue JS//-->
+    <script src="https://unpkg.com/vue@3"></script>
+
+</head>
+<body>
+    <!--crear contenedor-->
+    <div id="contenedor"> 
+        <ol>
+            <li v-for="item in chamacos">
+                {{item.name}} : <span>{{item.role}}</span>
+            </li>
+        </ol>
+        <input type="text" v-model="chamacos_name" name="">
+        <input type="text" v-model="role" name="">
+        <button @click="save">Agregar</button>
+        <hr>
+        <h1>
+            {{name}}
+        </h1>
+        <h2>
+            {{lastname}}
+        </h2>
+        <input type="text" v-model="name" name="">
+        <button @click="hola">click</button>
+        <hr>
+        <input type="text" v-model="numeroUno" name="">
+        <input type="text" v-model="numeroDos" name="">
+        <button @click="suma">suma</button>
+        
+        <h1>
+            {{sumar}}
+        </h1>
+        <hr>
+        
+        <input type="text" v-model="age" name="">
+        <h1 v-if="age<18">
+            No pase
+        </h1>
+        <h1 v-if="age>=18">
+            Pase
+        </h1>
+    </div>
+
+    <script type="text/javascript">
+        const{createApp}=Vue;
+        const app = createApp({
+            data() {
+                return {
+                    name: '',
+                    lastname: 'Aviles',
+                    numeroUno:'',
+                    numeroDos:'',
+                    sumar:"0",
+                    age:'0',
+                    chamacos:[{name:'Iran',role:'Front'},
+                    {name:'Buen',role:'backend'},
+                    {name:'Angel',role:'movil'}],
+                    chamacos_name:''
+                }
+            },
+            methods:{
+                hola(){
+                    alert('hola ' + this.name)
+                },
+                suma(){
+                    this.sumar=parseInt(this.numeroUno)+parseInt(this.numeroDos);
+                },
+                save(){
+                    this.chamacos.push({name:this.chamacos_name,role:this.role})
+                }
+            }
+        }).mount('#contenedor')
+    </script>
+</body>
+</html>
